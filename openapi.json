@@ -1,0 +1,87 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "x402 Image Generation API",
+    "version": "1.0.0",
+    "description": "Pay-per-call image generation API for AI agents. Three quality tiers: fast ($0.02), quality ($0.10), premium ($0.20).",
+    "contact": {
+      "email": "beauceballos93@outlook.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.x402img.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/api/generate-image": {
+      "post": {
+        "summary": "Generate an image",
+        "description": "Generates an image based on a text prompt. Price depends on the selected tier.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["prompt"],
+                "properties": {
+                  "prompt": {
+                    "type": "string",
+                    "description": "Text description of the desired image"
+                  },
+                  "tier": {
+                    "type": "string",
+                    "enum": ["fast", "quality", "premium"],
+                    "description": "Quality tier: 'fast' = $0.02 (quick drafts), 'quality' = $0.10 (high quality), 'premium' = $0.20 (best quality, text rendering). Default: fast",
+                    "default": "fast"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Image generated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "imageUrl": { "type": "string" },
+                    "model": { "type": "string" },
+                    "tier": { "type": "string" },
+                    "notice": { "type": "string" },
+                    "expiresAt": { "type": "string", "format": "date-time" }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required — client must pay in USDC on Base Mainnet"
+          }
+        },
+        "x-payment-info": {
+          "price": {
+            "mode": "dynamic",
+            "currency": "USD",
+            "min": "0.02",
+            "max": "0.20",
+            "tiers": {
+              "fast": "0.02",
+              "quality": "0.10",
+              "premium": "0.20"
+            }
+          },
+          "protocols": [
+            { "x402": {} }
+          ]
+        }
+      }
+    }
+  }
+}

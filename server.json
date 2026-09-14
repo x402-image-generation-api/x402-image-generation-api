@@ -1,0 +1,30 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.x402-image-generation-api/x402-image-generation-api",
+  "description": "Pay-per-call image generation API for AI agents. USDC payments via x402. Three quality tiers: fast ($0.02), quality ($0.10), premium ($0.20).",
+  "repository": {
+    "url": "https://github.com/x402-image-generation-api/x402-image-generation-api",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "packages": [],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.x402img.com/api/generate-image"
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "categories": ["ai", "image-generation", "api", "x402"],
+      "tags": ["x402", "mcp", "image-generation", "usdc", "base", "flux", "ideogram"],
+      "homepage": "https://api.x402img.com",
+      "license": "MIT",
+      "pricing": {
+        "model": "pay-per-call",
+        "currency": "USDC",
+        "network": "base"
+      }
+    }
+  }
+}

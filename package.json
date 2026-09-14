@@ -1,0 +1,26 @@
+{
+  "name": "x402-image-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@payai/facilitator": "^2.4.4",
+    "@x402/core": "^2.25.0",
+    "@x402/evm": "^2.25.0",
+    "@x402/express": "^2.25.0",
+    "@x402/extensions": "^2.25.0",
+    "@x402/fetch": "^2.25.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "replicate": "^0.31.1",
+    "uuid": "^14.0.2",
+    "viem": "^2.56.3"
+  }
+}
